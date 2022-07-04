@@ -16,4 +16,15 @@ var connection = mysql.createConnection({
     }
     console.log("monda conectada, creo");
   });
-  export{conectar}
+
+
+const agregarSorteo = (nombre,descripcionSorteo) =>{
+  const sql = `INSERT INTO sorteo(idsorteo, nombre, descripcion) VALUES (${null},"${nombre}","${descripcionSorteo}")`
+  connection.query(
+    sql,function(err, result, filed){
+    if(err) throw err
+    console.log(result)
+  })
+}
+
+  export{conectar, agregarSorteo}

@@ -1,5 +1,5 @@
 import express from 'express'
-import { conectar,agregarSorteo } from './src/mysql_conexion.js';
+import { conectar,agregarSorteo, obtenerSorteos } from './src/mysql_conexion.js';
 
 const app = express();
 
@@ -20,8 +20,9 @@ app.use(express.static('./src'));
 app.use(express.static('./css'));
 
 app.get('/', function(req,res){
+    let todos;
     // res.send('aplicacion iniciada');
-   
+    todos = obtenerSorteos();
     res.render('index.pug',{titulo:'Seccion para agregar sorteos',}); 
 });
 
@@ -33,3 +34,5 @@ app.get('/agregarSorteo/:nombre/:descripcionSorteo',function(req,res){
     res.redirect('/')
     console.log(nombre,descripcionSorteo);
 })
+
+

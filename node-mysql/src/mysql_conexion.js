@@ -18,6 +18,7 @@ var connection = mysql.createConnection({
   });
 
 
+
 const agregarSorteo = (nombre,descripcionSorteo) =>{
   const sql = `INSERT INTO sorteo(idsorteo, nombre, descripcion) VALUES (${null},"${nombre}","${descripcionSorteo}")`
   connection.query(
@@ -27,4 +28,14 @@ const agregarSorteo = (nombre,descripcionSorteo) =>{
   })
 }
 
-  export{conectar, agregarSorteo}
+const obtenerSorteos =()=>{
+let todos;
+  const sql = 'SELECT * FROM sorteo'
+
+  connection.query(sql, function(err,result,field){
+    todos = result;
+  })
+  return todos;
+}
+
+  export{conectar, agregarSorteo, obtenerSorteos}
